@@ -1,0 +1,5 @@
+- Add home page design
+- Get server functional soon
+- Connect server to client
+- Make WebGL rendering system for client (god tier performance?? no webgpu>> but is not worth effort)
+- Ensure clean code throughout the project (im gonna need this for future projects so make sure everything is decipherable)

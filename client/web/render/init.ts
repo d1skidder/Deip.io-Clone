@@ -30,5 +30,4 @@ export default function initGL() {
 	gl.useProgram(program);
 }
 
-
 console.log("lol");

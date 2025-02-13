@@ -6,7 +6,7 @@ export default function draw() {
 	// * Lerping Action!
 	// TODO: Change to something more efficient perhaps?
 
-	const background = UTILS.convertHEXToRGB("#8ecc51")
+	const background = UTILS.convertHEXToRGB("#cdcdcc");
 	gl.clearColor(background[0], background[1], background[2], 1.0);
 	gl.clear(gl.COLOR_BUFFER_BIT);
 
@@ -20,4 +20,3 @@ export default function draw() {
 
 	requestAnimationFrame(draw);
 }
-
