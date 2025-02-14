@@ -53,4 +53,12 @@ export namespace UTILS {
 			return Math.atan2(second.y - first.y2, second.x - first.x2);
 		}
 	}
+
+	export function convertHEXToRGB(hex: string): number[] {
+		return [
+			Number.parseInt(hex.substring(1, 3), 16) / 255,
+			Number.parseInt(hex.substring(3, 5), 16) / 255,
+			Number.parseInt(hex.substring(5, 7), 16) / 255,
+		];
+	}
 }
