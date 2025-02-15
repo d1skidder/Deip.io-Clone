@@ -28,7 +28,6 @@ export default async function draw() {
 
 	const uAngleLocation = gl.getUniformLocation(glProgram, "u_angle");
 
-	console.log(uAngleLocation)
 	ang += 0.01;
 	gl.uniform1f(uAngleLocation, ang);
 

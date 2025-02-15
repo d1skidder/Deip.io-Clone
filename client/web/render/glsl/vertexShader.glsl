@@ -7,7 +7,7 @@ void main() {
     mat2 rot = mat2(
         cosA, -sinA,
         sinA, cosA
-    );
+    );    
 
     vec2 rot_pos = rot * a_position;
 

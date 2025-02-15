@@ -2,7 +2,7 @@ import { gl } from "../document";
 import createProgram from "./gl/createProgram";
 import initBuffers from "./gl/initBuffers";
 
-let uColorLocation = null;
+let uColorLocation: WebGLUniformLocation | null;
 export function getUColorLocation() {
     return uColorLocation;
 }
