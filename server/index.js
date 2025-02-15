@@ -13,4 +13,19 @@ app.get("*", (req, res) => {
 	res.sendFile(path.join(__dirname, `../${req.url}`));
 });
 
+//* Configure WebSocket Server
+Server.on("connection", async (stream) => {
+	stream.addEventListener("onopen", () => {});
+
+	stream.addEventListener("onmessage", async (event) => {
+		const data = event.data;
+	});
+
+	stream.addEventListener("onclose", () => {});
+
+	stream.addEventListener("onerror", (err) => {
+		console.error(err);
+	});
+});
+
 app.listen(9998);
