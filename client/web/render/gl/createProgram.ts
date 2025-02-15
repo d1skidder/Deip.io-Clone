@@ -1,7 +1,6 @@
 import { gl } from "../../document";
 import compileShader from "./compileShader";
 
-// biome-ignore lint/suspicious/noExplicitAny: TODO for later
 export default function createProgram(vertex: string, frag: string): WebGLProgram | null {
 	// remove the : WebGLShader | null if any problems arise (probably is the cause)
 	const vertexShader: WebGLShader | null = compileShader(vertex, gl.VERTEX_SHADER);
