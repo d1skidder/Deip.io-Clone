@@ -1,32 +1,53 @@
 body {
 	background-color: black;
-
 	margin: 0;
 	padding: 0;
 }
 
 #gameCanvas {
 	position: absolute;
-
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	width: 100%;
 	height: 100%;
+	z-index: 1;
 }
 
-#mainMenu {
+#black-overlay {
 	position: absolute;
-
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-
+	background-color: rgba(0, 0, 0, 0.85);
 	width: 100%;
 	height: 100%;
-
-	background: rgba(0, 0, 0, 0.85);
 	backdrop-filter: blur(2px);
+	z-index: 2;
+}
 
-	z-index: 99;
+#main-content {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 100%;
+	height: 100%;
+	mix-blend-mode: lighten;
+	background: rgba(225, 225, 225, 0.3);
+	backdrop-filter: blur(4px);
+	z-index: 3;
+	clip-path: circle(0% at 50% 50%);
+	animation: homescreenExpand 2s forwards;
+}
+
+
+@keyframes homescreenExpand {
+	0% {
+		clip-path: circle(0% at 50% 50%);
+	}
+
+	100% {
+		clip-path: circle(100% at 50% 50%);
+	}
 }

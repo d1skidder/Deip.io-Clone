@@ -1,3 +1,5 @@
+// ? This is just to check how *much* better my serialization actually is
+
 const msgpack = require("msgpack-lite");
 import serializer from "./serializer";
 

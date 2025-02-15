@@ -3,15 +3,16 @@ import compileShader from "./compileShader";
 
 // biome-ignore lint/suspicious/noExplicitAny: TODO for later
 export default function createProgram(vertex: string, frag: string): WebGLProgram | null {
-	const vertexShader = compileShader(vertex, gl.VERTEX_SHADER);
-	const fragShader = compileShader(frag, gl.FRAGMENT_SHADER);
+	// remove the : WebGLShader | null if any problems arise (probably is the cause)
+	const vertexShader: WebGLShader | null = compileShader(vertex, gl.VERTEX_SHADER);
+	const fragShader: WebGLShader | null = compileShader(frag, gl.FRAGMENT_SHADER);
 
 	if (!vertexShader || !fragShader) {
 		alert("Error compiling WebGL Shaders!");
 		return null;
 	}
 
-	const program = gl.createProgram();
+	const program: WebGLProgram = gl.createProgram();
 	gl.attachShader(program, vertexShader);
 	gl.attachShader(program, fragShader);
 

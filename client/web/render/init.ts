@@ -1,5 +1,6 @@
 import { gl } from "../document";
 import createProgram from "./gl/createProgram";
+import initBuffers from "./gl/initBuffers";
 
 // TODO: Link shaders to respective files in "glsl/"
 const vertexShaderSource = `
@@ -16,6 +17,11 @@ void main() {
 }
 `;
 
+let uColorLocation = null;
+export function getUColorLocation() {
+	return uColorLocation;
+}
+
 export default function initGL() {
 	if (!gl) {
 		alert(
@@ -28,6 +34,11 @@ export default function initGL() {
 
 	const program = createProgram(vertexShaderSource, fragmentShaderSource);
 	gl.useProgram(program);
+
+	uColorLocation = gl.getUniformLocation(program, 'u_color');
+	initBuffers();
+
+	return program;
 }
 
 console.log("lol");

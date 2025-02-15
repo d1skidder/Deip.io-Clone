@@ -8,5 +8,5 @@ const distanceOf = new UTILS.DistanceOf();
 const directionOf = new UTILS.DirectionOf();
 
 console.log("ok");
-initGL();
+export const webGLProgram = initGL();
 draw();
