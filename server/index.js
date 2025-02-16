@@ -19,8 +19,10 @@ Server.on("connection", async (stream) => {
 
 	})
 
-	stream.on("message", async (data) => {
-		console.log(serializer.default.decode(data));
+	stream.on("message", async (...args) => {
+		const data = [...args];
+
+		console.log(data);
 	});
 
 	stream.on("close", () => {});
