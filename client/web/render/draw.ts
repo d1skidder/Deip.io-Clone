@@ -3,11 +3,14 @@ import { UTILS } from "../../../utils";
 import { gl } from "../document";
 import createLineVertices from "./gl/createLineVertices";
 import { getUColorLocation } from "./init";
+import renderCircle from "./util/renderCircle";
 
 let ang = 0;
 
 // TODO: make rendering system using webgl
 export default async function draw() {
+	gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
+
 	const glProgram = await webGLProgram;
 
 	//? Action!
@@ -26,6 +29,8 @@ export default async function draw() {
 	gl.clear(gl.COLOR_BUFFER_BIT);
 	*/
 
+	//! WORKS, DRAWS TRIANGLE
+	/*
 	const uAngleLocation = gl.getUniformLocation(glProgram, "u_angle");
 
 	ang += 0.01;
@@ -50,8 +55,26 @@ export default async function draw() {
 	gl.vertexAttribPointer(location, 2, gl.FLOAT, false, 0, 0);
 
 	gl.drawArrays(gl.TRIANGLES, 0, 3);
-	
+	*/
 
+	const buffer = gl.createBuffer();
+	gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+	gl.bufferData(gl.ARRAY_BUFFER, renderCircle(0.2, 64), gl.STATIC_DRAW);
+
+	const positionAttributeLocation = gl.getAttribLocation(
+		glProgram,
+		"a_position",
+	);
+	gl.enableVertexAttribArray(positionAttributeLocation);
+	gl.vertexAttribPointer(positionAttributeLocation, 2, gl.FLOAT, false, 0, 0);
+
+	const colorUniformLocation = gl.getUniformLocation(glProgram, "u_color");
+	gl.uniform4fv(colorUniformLocation, [1.0, 1.0, 1.0, 1.0]);
+
+	gl.clearColor(0.0, 0.0, 0.0, 1.0);
+	gl.clear(gl.COLOR_BUFFER_BIT);
+
+	gl.drawArrays(gl.TRIANGLE_FAN, 0, renderCircle(2, 64).length / 2);
 
 	/*
 	const location = gl.getAttribLocation(webGLProgram, "a_position");
@@ -69,7 +92,6 @@ export default async function draw() {
 	gl.bufferData(gl.ARRAY_BUFFER, lineVertices, gl.STATIC_DRAW);
 	gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
 	*/
-	
 
 	requestAnimationFrame(draw);
 }

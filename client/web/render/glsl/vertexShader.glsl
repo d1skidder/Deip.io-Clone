@@ -6,7 +6,7 @@ void main() {
     float sinA = sin(u_angle);
     mat2 rot = mat2(
         cosA, -sinA,
-        sinA, cosA
+        sinA, cosA  
     );    
 
     vec2 rot_pos = rot * a_position;
