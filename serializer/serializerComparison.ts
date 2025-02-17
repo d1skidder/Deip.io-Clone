@@ -36,18 +36,3 @@ for(let i = 0; i < 1000000; i++) {
     serializer.decode(myy);
 }
 console.log(`my decode speed ${(performance.now() - mystartd)}ms`);
-
-/*
-const a = serializer.encode(["aaaaa", 123]);
-console.log("serialized", a);
-const b = serializer.decode(a);
-console.log("deserialized", b)
-*/
-
-console.log("---------------------------------------------------------------------------------")
-
-const a = [serializer.encode("aaa"), serializer.encode(1234)];
-const b = msgpack.encode(["aaa", 1234]);
-
-console.log("my", a);
-console.log("msgpack", b.length);

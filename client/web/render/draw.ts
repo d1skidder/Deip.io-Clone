@@ -3,14 +3,11 @@ import { UTILS } from "../../../utils";
 import { gl } from "../document";
 import createLineVertices from "./gl/createLineVertices";
 import { getUColorLocation } from "./init";
-import renderCircle from "./util/renderCircle";
 
 let ang = 0;
 
 // TODO: make rendering system using webgl
 export default async function draw() {
-	gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
-
 	const glProgram = await webGLProgram;
 
 	//? Action!
@@ -29,8 +26,6 @@ export default async function draw() {
 	gl.clear(gl.COLOR_BUFFER_BIT);
 	*/
 
-	//! WORKS, DRAWS TRIANGLE
-	/*
 	const uAngleLocation = gl.getUniformLocation(glProgram, "u_angle");
 
 	ang += 0.01;
@@ -103,6 +98,7 @@ export default async function draw() {
 	gl.bufferData(gl.ARRAY_BUFFER, lineVertices, gl.STATIC_DRAW);
 	gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
 	*/
+	
 
 	requestAnimationFrame(draw);
 }

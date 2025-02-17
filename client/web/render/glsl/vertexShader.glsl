@@ -7,7 +7,10 @@ varying float v_v;
 void main() {
     float cosA = cos(u_angle);
     float sinA = sin(u_angle);
-    mat2 rot = mat2(cosA, -sinA, sinA, cosA);
+    mat2 rot = mat2(
+        cosA, -sinA,
+        sinA, cosA
+    );    
 
     vec2 rot_pos = rot * a_position;
 
