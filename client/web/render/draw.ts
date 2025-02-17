@@ -67,11 +67,22 @@ export default async function draw() {
 	);
 	gl.enableVertexAttribArray(positionAttributeLocation);
 	gl.vertexAttribPointer(positionAttributeLocation, 2, gl.FLOAT, false, 0, 0);
+	
 
-	const colorUniformLocation = gl.getUniformLocation(glProgram, "u_color");
-	gl.uniform4fv(colorUniformLocation, [1.0, 1.0, 1.0, 1.0]);
+	//! extract to one time call
+	const positionLoc = gl.getAttribLocation(glProgram, "a_position");
+	const vLoc = gl.getAttribLocation(glProgram, "a_v");
+	const baseColorLoc = gl.getUniformLocation(glProgram, "u_baseColor");
+	const borderColorLoc = gl.getUniformLocation(glProgram, "u_borderColor");
+	const borderSizeLoc = gl.getUniformLocation(glProgram, "u_borderSize");
 
-	gl.clearColor(0.0, 0.0, 0.0, 1.0);
+	gl.uniform4fv(baseColorLoc, [1, 0, 0, 1]);
+	gl.uniform4fv(borderColorLoc, [0, 0, 0, 1]);
+
+	const t = Date.now() * 0.001;
+	gl.uniform1f(borderSizeLoc, Math.sin(t) * 0.5 + 0.5);
+
+	gl.clearColor(1.0, 1.0, 1.0, 1.0);
 	gl.clear(gl.COLOR_BUFFER_BIT);
 
 	gl.drawArrays(gl.TRIANGLE_FAN, 0, renderCircle(2, 64).length / 2);
