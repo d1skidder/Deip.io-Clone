@@ -1,19 +1,25 @@
 import { gl } from "../../document";
 
-export default function compileShader(source: string, type: number): WebGLShader | null {
-    const shader = gl.createShader(type);
-    gl.shaderSource(shader, source);
-    gl.compileShader(shader);
+export default function compileShader(
+	source: string,
+	type: number,
+): WebGLShader | null {
+	const shader: WebGLShader = gl.createShader(type);
 
-    if(!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-        alert("Error compiling WebGL Shader!");
+	if (!shader) console.warn("WebGL Shader is NULL.");
 
-        console.error(gl.getShaderInfoLog(shader));
-        
-        // ? Delete shader
-        gl.deleteShader(shader);
-        return null;
-    }
+	gl.shaderSource(shader, source);
+	gl.compileShader(shader);
 
-    return shader;
+	if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+		alert("Error compiling WebGL Shader!");
+
+		console.error(gl.getShaderInfoLog(shader));
+
+		// ? Delete shader
+		gl.deleteShader(shader);
+		return null;
+	}
+
+	return shader;
 }
