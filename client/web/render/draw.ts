@@ -39,7 +39,7 @@ export default async function draw() {
         0.0, 0.5, //top
     ]);
     
-    const buffer = gl.createBuffer();
+    let buffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
     gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
 	gl.uniform4f(getUColorLocation(), 1.0, 0.0, 0.0, 1.0); // rgba
@@ -50,9 +50,9 @@ export default async function draw() {
 	gl.vertexAttribPointer(location, 2, gl.FLOAT, false, 0, 0);
 
 	gl.drawArrays(gl.TRIANGLES, 0, 3);
-	*/
+	
 
-	const buffer = gl.createBuffer();
+	buffer = gl.createBuffer();
 	gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
 	gl.bufferData(gl.ARRAY_BUFFER, renderCircle(0.2, 64), gl.STATIC_DRAW);
 
